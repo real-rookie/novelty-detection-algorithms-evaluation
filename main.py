@@ -1,13 +1,12 @@
-import datetime
 import argparse
 import os
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='BMAD: Benchmarks for Medical Anomaly Detection')
-    parser.add_argument('--data', default="RESC",
-                        help='dataset information, select from ["RESC", "bras2021", "camelyon", "chest", "liver", "OCT2017"] ')
+    parser = argparse.ArgumentParser(description='Novelty detection algorithms evaluation')
+    parser.add_argument('--data', default="MNIST",
+                        help='dataset information, select from ["MNIST", "F-MNIST", "CIFAR-10", "MVTec-AD"] ')
     parser.add_argument('--model', default="RD4AD",
-                        help='dataset information, select from ["padim", "padim_resnet50", "stfpm", "stfpm_resnet50", "draem", "cfa", "cflow", "ganomaly", "RD4AD", "patchcore", "patchcore_resnet50"] ')
+                        help='dataset information, select from ["RD4AD", "patchcore", "patchcore_resnet50"] ')
     parser.add_argument('--mode', default="train",
                         help='train or test')
     parser.add_argument('--weight', default=None,
@@ -18,38 +17,18 @@ if __name__ == '__main__':
     model = args.model
     mode = args.mode
 
+    num_of_classes = {
+        "MNIST": 10, "F-MNIST": 10, "CIFAR-10": 10, "MVTec-AD": 15
+    }
+
+
     if mode == 'train':
-        if model in ["padim", "padim_resnet50", "stfpm", "stfpm_resnet50","draem", "cfa", "cflow", "ganomaly", "RD4AD", "patchcore", "patchcore_resnet50"]:
-            os.system(f'python anomalib/tools/train.py --config config/{data}_{model}.yaml')
-        elif model == "Deep-SVDD":
-            os.system(f"python Deep-SVDD/main.py {data} cifar10_LeNet Deep-SVDD/log/{data} /home/jinan/")
-        elif model == "UTRAD":
-            os.system(f"python UTRAD/main.py --dataset_name {data}")
-        elif model == "MKD":
-            os.system(f"python MKD/train.py --config config/{data}_{model}.yaml")
-        elif model == "cutpaste":
-            os.system(f"python pytorch-cutpaste/run_training.py --type {data}")
-        elif model == "csflow":
-            os.system(f"python cs-flow/main.py --data {data}")
-        elif model == "fanogan":
-            os.system(f"python f-AnoGAN/your_own_dataset/train_wgangp.py --data {data}")
-            os.system(f"python f-AnoGAN/your_own_dataset/train_encoder_izif.py --data {data}")
-            os.system(f"python f-AnoGAN/your_own_dataset/test_anomaly_detection.py --data {data}")
-        else:
-            print(f'ERROR, you input a wrong model {model}, please select from ["padim", "padim_resnet50", "stfpm", "stfpm_resnet50", "draem", "cfa", "cflow", "ganomaly", "RD4AD", "patchcore", "patchcore_resnet50"]')
+        if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
+            for normal_cls in range(num_of_classes[data]):
+                os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_{normal_cls}.yaml')
     
+    # test part to be adjusted
     elif mode == 'test':
-        if model in ["padim", "padim_resnet50", "stfpm", "stfpm_resnet50","draem", "cfa", "cflow", "ganomaly", "RD4AD", "patchcore", "patchcore_resnet50"]:
-            os.system(f'python anomalib/tools/test.py --model {model} --config config/{data}_{model}_test.yaml --weight_file {args.weight}')
-        elif model == "UTRAD":
-            os.system(f"python UTRAD/valid.py --dataset_name {data} --weight {args.weight}")
-        elif model == "MKD":
-            os.system(f"python MKD/test.py --config config/{data}_{model}.yaml")
-        elif model == "cutpaste":
-            os.system(f"python pytorch-cutpaste/eval.py --type {data} --weight {args.weight}")
-        elif model == "csflow":
-            os.system(f"python cs-flow/evaluate.py --data {data}")
-        elif model == "fanogan":
-            os.system(f"python f-AnoGAN/your_own_dataset/test_anomaly_detection.py --data {data}")
-        else:
-            print(f'ERROR, you input a wrong model {model}, please select from ["padim", "padim_resnet50", "stfpm", "stfpm_resnet50", "draem", "cfa", "cflow", "ganomaly", "RD4AD", "patchcore", "patchcore_resnet50"]')
+        if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
+            for cls in range(num_of_classes[data]):
+                os.system(f'python anomalib/tools/test.py --model {model}_{cls} --config config/{data}_{model}_{cls}_test.yaml --weight_file {args.weight}')
