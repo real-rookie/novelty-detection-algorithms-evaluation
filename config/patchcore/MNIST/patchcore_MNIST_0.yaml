@@ -13,9 +13,9 @@ dataset:
   normalization: imagenet # data distribution to which the images will be normalized: [none, imagenet]
 
   normal_dir: training/0 # name of the folder containing normal images.
-  abnormal_dir: test/test_samples/novel/0 # name of the folder containing abnormal images.
+  abnormal_dir: cv/0/novel # name of the folder containing abnormal images.
   mask: null #optional
-  normal_test_dir:  test/test_samples/normal/0 # optional
+  normal_test_dir:  cv/0/normal # optional
   extensions: null #  Type of the image extensions to read from the directory. Defaults to None.
   
   test_split_mode: from_dir # options: [from_dir, synthetic]
