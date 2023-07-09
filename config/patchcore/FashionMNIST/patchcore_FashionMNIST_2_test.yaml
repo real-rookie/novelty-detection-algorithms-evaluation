@@ -1,28 +1,28 @@
 dataset:
-  name: MVTec-AD_0
+  name: FashionMNIST_2
   format: folder
-  path: ../datasets/MVTec-AD/images/
+  path: ../datasets/FashionMNIST/images/
   task: classification # classification or segmentation
 
   train_batch_size: 32
-  eval_batch_size: 32
-  inference_batch_size: 32
-  num_workers: 8
+  eval_batch_size: 1
+  inference_batch_size: 1
+  num_workers: 1
   image_size: 256 # dimensions to which images are resized (mandatory)
   center_crop: 224 # dimensions to which images are center-cropped after resizing (optional)
   normalization: imagenet # data distribution to which the images will be normalized: [none, imagenet]
 
-  normal_dir: train/0 # name of the folder containing normal images.
-  abnormal_dir: cv/0/novel # name of the folder containing abnormal images.
+  normal_dir: train/2 # name of the folder containing normal images.
+  abnormal_dir: test/2/novel # name of the folder containing abnormal images.
   mask: null #optional
-  normal_test_dir: cv/0/normal # optional
+  normal_test_dir: test/2/normal # optional
   extensions: null #  Type of the image extensions to read from the directory. Defaults to None.
   
   test_split_mode: from_dir # options: [from_dir, synthetic]
   test_split_ratio: 0 # fraction of train images held out testing (usage depends on test_split_mode)
   val_split_mode: same_as_test # options: [same_as_test, from_test, synthetic]
   val_split_ratio: 1 # ratio for validation
-  seed: 0
+  seed: 2
 
   transform_config:
       train: null
@@ -62,8 +62,8 @@ visualization:
   mode: full # options: ["full", "simple"]
 
 project:
-  seed: 0
-  path: ./results/patchcore_MVTec-AD_0
+  seed: 2
+  path: ./results/patchcore_FashionMNIST_2
 
 logging:
   logger: [] # options: [comet, tensorboard, wandb, csv] or combinations.
