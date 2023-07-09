@@ -24,10 +24,10 @@ if __name__ == '__main__':
 
     if mode == 'train':
         if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
-            for normal_cls in range(1):  # FIXME
+            for normal_cls in range(num_of_classes[data]):
                 os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_{normal_cls}.yaml')
     
     elif mode == 'test':
         if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
-            for normal_cls in range(1):  # FIXME
-                os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file {args.weight}')
+            for normal_cls in range(num_of_classes[data]):
+                os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file {results/{model}_{data}_{normal_cls}/{model}/{data}/run/weights/lightning/model.ckpt}')s
