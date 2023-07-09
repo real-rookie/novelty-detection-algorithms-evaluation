@@ -1,7 +1,7 @@
 dataset:
   name: MNIST_0
   format: folder
-  path: ../datasets/MNIST/MNIST/images/
+  path: ../datasets/MNIST/images/
   task: classification # classification or segmentation
 
   train_batch_size: 32
@@ -12,7 +12,7 @@ dataset:
   center_crop: 224 # dimensions to which images are center-cropped after resizing (optional)
   normalization: imagenet # data distribution to which the images will be normalized: [none, imagenet]
 
-  normal_dir: training/0 # name of the folder containing normal images.
+  normal_dir: train/0 # name of the folder containing normal images.
   abnormal_dir: cv/0/novel # name of the folder containing abnormal images.
   mask: null #optional
   normal_test_dir:  cv/0/normal # optional
