@@ -18,7 +18,7 @@ if __name__ == '__main__':
     mode = args.mode
 
     num_of_classes = {
-        "MNIST": 10, "F-MNIST": 10, "CIFAR-10": 10, "MVTec-AD": 15
+        "MNIST": 10, "FashionMNIST": 10, "CIFAR10": 10, "MVTec-AD": 15
     }
 
 
@@ -30,4 +30,7 @@ if __name__ == '__main__':
     elif mode == 'test':
         if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
             for normal_cls in range(num_of_classes[data]):
+                if model == "RD4AD":
+                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/reverse_distillation/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
+                    continue
                 os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/{model}/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
