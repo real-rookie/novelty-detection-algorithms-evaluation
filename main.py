@@ -42,6 +42,6 @@ if __name__ == '__main__':
                         os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/{model}/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
             elif method == "inter_set":
                 if model == "RD4AD":
-                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set_test/reverse_distillation/{data}_inter_set_test/run/weights/lightning/model.ckpt')
+                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/reverse_distillation/{data}_inter_set/run/weights/lightning/model.ckpt')
                 else:
-                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set_test/{model}/{data}_inter_set_test/run/weights/lightning/model.ckpt')
+                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/{model}/{data}_inter_set/run/weights/lightning/model.ckpt')
