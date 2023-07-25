@@ -31,7 +31,11 @@ if __name__ == '__main__':
                 for normal_cls in range(num_of_classes[data]):
                     os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_{normal_cls}.yaml')
             elif method == "inter_set":
-                os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_inter_set.yaml')
+                if data == "MVTec-AD":
+                    os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_inter_set_texture_to_object.yaml')
+                    os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_inter_set_object_to_texture.yaml')
+                else:
+                    os.system(f'python anomalib/tools/train.py --config config/{model}/{data}/{model}_{data}_inter_set.yaml')
     elif mode == 'test':
         if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
             if method == "one_to_many":
@@ -42,6 +46,10 @@ if __name__ == '__main__':
                         os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/{model}/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
             elif method == "inter_set":
                 if model == "RD4AD":
-                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/reverse_distillation/{data}_inter_set/run/weights/lightning/model.ckpt')
+                    if data == "MVTec-AD":
+                        os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test_texture_to_object.yaml --weight_file results/{model}_{data}_inter_set_texture_to_object/reverse_distillation/{data}_inter_set_texture_to_object/run/weights/lightning/model.ckpt')
+                        os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test_object_to_texture.yaml --weight_file results/{model}_{data}_inter_set_object_to_texture/reverse_distillation/{data}_inter_set_object_to_texture/run/weights/lightning/model.ckpt')
+                    else:
+                        os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/reverse_distillation/{data}_inter_set/run/weights/lightning/model.ckpt')
                 else:
                     os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/{model}/{data}_inter_set/run/weights/lightning/model.ckpt')

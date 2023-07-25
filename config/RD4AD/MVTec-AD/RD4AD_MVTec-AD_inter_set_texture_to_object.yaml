@@ -1,5 +1,5 @@
 dataset:
-  name: MVTec-AD_inter_set
+  name: MVTec-AD_inter_set_texture_to_object
   format: folder
   path: ../datasets/MVTec-AD/images/
   task: classification # classification or segmentation
@@ -12,10 +12,10 @@ dataset:
   center_crop: null # dimensions to which images are center-cropped after resizing (optional)
   normalization: imagenet # data distribution to which the images will be normalized: [none, imagenet]
 
-  normal_dir: train/0-4 # name of the folder containing normal images.
-  abnormal_dir: cv/0-4/novel # name of the folder containing abnormal images.
+  normal_dir: train # name of the folder containing normal images.
+  abnormal_dir: null # name of the folder containing abnormal images.
   mask: null #optional
-  normal_test_dir: cv/0-4/normal # optional
+  normal_test_dir: cv/normal # optional
   extensions: null #  Type of the image extensions to read from the directory. Defaults to None.
   
   test_split_mode: from_dir # options: [from_dir, synthetic]
@@ -72,7 +72,7 @@ visualization:
 
 project:
   seed: 0
-  path: ./results/RD4AD_MVTec-AD_inter_set
+  path: ./results/RD4AD_MVTec-AD_inter_set_texture_to_object
 
 logging:
   logger: [] # options: [comet, tensorboard, wandb, csv] or combinations.
