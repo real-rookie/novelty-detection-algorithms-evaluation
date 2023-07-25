@@ -22,6 +22,7 @@ if __name__ == '__main__':
     mode = args.mode
     method = args.method
     config = args.config
+    weight = args.weight
 
     num_of_classes = {
         "MNIST": 10, "FashionMNIST": 10, "CIFAR10": 10, "MVTec-AD": 15
@@ -49,7 +50,7 @@ if __name__ == '__main__':
             elif method == "inter_set":
                 if model == "RD4AD":
                     if data == "MVTec-AD":
-                        os.system(f'python anomalib/tools/test.py --model {model} --config {config}')
+                        os.system(f'python anomalib/tools/test.py --model {model} --config {config} --weight_file {weight}')
                     else:
                         os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_inter_set_test.yaml --weight_file results/{model}_{data}_inter_set/reverse_distillation/{data}_inter_set/run/weights/lightning/model.ckpt')
                 else:
