@@ -13,15 +13,15 @@ dataset:
   normalization: imagenet # data distribution to which the images will be normalized: [none, imagenet]
 
   normal_dir: train/14 # name of the folder containing normal images.
-  abnormal_dir: cv/14/novel # name of the folder containing abnormal images.
+  abnormal_dir: test/14/novel # name of the folder containing abnormal images.
   mask: null #optional
-  normal_test_dir: cv/14/normal # optional
+  normal_test_dir: test/14/normal # optional
   extensions: null #  Type of the image extensions to read from the directory. Defaults to None.
   
   test_split_mode: from_dir # options: [from_dir, synthetic]
   test_split_ratio: 0 # fraction of train images held out testing (usage depends on test_split_mode)
-  val_split_mode: same_as_test # options: [same_as_test, from_test, synthetic]
-  val_split_ratio: 1 # ratio for validation
+  val_split_mode: from_test # options: [same_as_test, from_test, synthetic]
+  val_split_ratio: 0.5 # ratio for validation
   seed: 14
 
   transform_config:
