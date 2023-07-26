@@ -31,6 +31,6 @@ if __name__ == '__main__':
         if model in ["RD4AD", "patchcore", "patchcore_resnet50"]:
             for normal_cls in range(num_of_classes[data]):
                 if model == "RD4AD":
-                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/reverse_distillation/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
+                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}.yaml --weight_file results/{model}_{data}_{normal_cls}/reverse_distillation/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
                 else:
-                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}_test.yaml --weight_file results/{model}_{data}_{normal_cls}/{model}/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
+                    os.system(f'python anomalib/tools/test.py --model {model} --config config/{model}/{data}/{model}_{data}_{normal_cls}.yaml --weight_file results/{model}_{data}_{normal_cls}/{model}/{data}_{normal_cls}/run/weights/lightning/model.ckpt')
