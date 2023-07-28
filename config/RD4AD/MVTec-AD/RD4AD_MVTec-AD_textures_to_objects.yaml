@@ -1,7 +1,7 @@
 dataset:
-  name: MVTec-AD_inter_set
+  name: MVTec-AD_textures_to_objects
   format: folder
-  path: ../datasets/MVTec-AD/images/
+  path: ../datasets/MVTec-AD/images/textures_to_objects
   task: classification # classification or segmentation
 
   train_batch_size: 32
@@ -72,7 +72,7 @@ visualization:
 
 project:
   seed: 0
-  path: ./results/RD4AD_MVTec-AD_inter_set
+  path: ./results/RD4AD_MVTec-AD_textures_to_objects
 
 logging:
   logger: [] # options: [comet, tensorboard, wandb, csv] or combinations.
